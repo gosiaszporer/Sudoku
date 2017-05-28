@@ -3,16 +3,11 @@
 class Sudoku
  
 	starting_board = Array.new
-	@@size
-
-    #def initialize(starting_board)
-    #	@starting_board = starting_board
-    #	@@size = 3
-    #end
+	@size
 
     def initialize(starting_board, size = 3)
     	@starting_board = starting_board
-    	@@size = size
+    	@size = size
     end
     
     def solved?	
@@ -29,16 +24,15 @@ class Sudoku
     		column = @starting_board.map{|a| a[i]}
 
     		length = column.length
-    		#@@size = Math.sqrt(column.length).to_i
 
-    		row = Array.new(@@size)
+    		row = Array.new(@size)
     		
-    		square = Array.new(@@size)
+    		square = Array.new(@size)
 
 			for j in 0..@starting_board.length-1 do	
 
 				row[j] = @starting_board[i][j]	
-				square[j] = @starting_board[(i/@@size)*@@size + j/@@size][i*@@size%length+j%@@size];
+				square[j] = @starting_board[(i/@size)*@size + j/@size][i*@size%length+j%(@size)];
 
 			end
 
@@ -65,7 +59,7 @@ class Sudoku
     end
     
     def set(x,y,number)
-    	if x<1 || x>@@size*@@size || y<1 || y> @@size*@@size
+    	if x<1 || x>@size*@size || y<1 || y> @size*@size
     		puts "enter valid data"
     	else
     	@starting_board[y-1][x-1] = number
@@ -86,16 +80,16 @@ class Sudoku
 				STDOUT.print " "
 				STDOUT.flush
 
-				for q in 1..@@size-1
-					if j == q*@@size-1 
+				for q in 1..@size-1
+					if j == q*@size-1 
 						STDOUT.print "| "
 						STDOUT.flush
 					end
 				end
 			end
 
-			for q in 1..@@size-1
-				if i == q*@@size-1 
+			for q in 1..@size-1
+				if i == q*@size-1 
 					puts
 					STDOUT.print "---------------------"
 					STDOUT.flush
