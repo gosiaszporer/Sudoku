@@ -3,6 +3,7 @@
 class Sudoku
  
 	starting_board = Array.new(81)
+	@@size
 
     def initialize(starting_board)
     	@starting_board = starting_board
@@ -10,19 +11,24 @@ class Sudoku
     
     def solved?	
 
-    	for i in 0..@starting_board.length-1 do
+    	for i in 0..@starting_board.length-1 
 
-    		row = Array.new(9)
     		if @starting_board[i][0] == nil
     			@starting_board[i][0] = 0
     		end
     		column = @starting_board.map{|a| a[i]}
-    		square = Array.new(9)
+
+    		length = column.length
+    		@@size = Math.sqrt(column.length).to_i
+
+    		row = Array.new(@@size)
+    		
+    		square = Array.new(@@size)
 
 			for j in 0..@starting_board.length-1 do	
 
 				row[j] = @starting_board[i][j]	
-				square[j] = @starting_board[(i/3)*3 + j/3][i*3%9 +j%3];
+				square[j] = @starting_board[(i/@@size)*@@size + j/@@size][i*@@size%length+j%@@size];
 
 			end
 
@@ -47,7 +53,7 @@ class Sudoku
     end
     
     def set(x,y,number)
-    	if x<1 || x>9 || y<1 || y> 9
+    	if x<1 || x>@@size*@@size || y<1 || y> @@size*@@size
     		"enter valid data"
     	end
     	@starting_board[x-1][y-1] = 2
@@ -63,7 +69,11 @@ class Sudoku
 				STDOUT.print @starting_board[i][j]
 				STDOUT.print " "
 				STDOUT.flush
-				if j==2 || j==5
+				#if j==2 || j==5
+				#	STDOUT.print "| "
+				#	STDOUT.flush
+				#end
+				if j == (@@size-1) || j == 2*@@size-1
 					STDOUT.print "| "
 					STDOUT.flush
 				end
