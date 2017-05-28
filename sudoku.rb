@@ -54,37 +54,42 @@ class Sudoku
     
     def set(x,y,number)
     	if x<1 || x>@@size*@@size || y<1 || y> @@size*@@size
-    		"enter valid data"
-    	end
+    		puts "enter valid data"
+    	else
     	@starting_board[x-1][y-1] = 2
+    	end
     end
     
     def print
-
 		for i in 0..@starting_board.length-1 do
 			for j in 0..@starting_board.length-1 do	
 				if @starting_board[i][j] == 0
 					@starting_board[i][j] = nil
-				end		
+				end	
+				if @starting_board[i][j] == nil
+					STDOUT.print " "
+					STDOUT.flush
+				end
 				STDOUT.print @starting_board[i][j]
 				STDOUT.print " "
 				STDOUT.flush
-				#if j==2 || j==5
-				#	STDOUT.print "| "
-				#	STDOUT.flush
-				#end
-				if j == (@@size-1) || j == 2*@@size-1
-					STDOUT.print "| "
+
+				for q in 1..@@size-1
+					if j == q*@@size-1 
+						STDOUT.print "| "
+						STDOUT.flush
+					end
+				end
+			end
+
+			for q in 1..@@size-1
+				if i == q*@@size-1 
+					puts
+					STDOUT.print "---------------------"
 					STDOUT.flush
 				end
 			end
-			if i == 2 || i==5
-				puts
-				puts "---------------------"
-			else
-				puts
-			end			
+			puts
 		end		
     end
-
 end
