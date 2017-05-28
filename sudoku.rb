@@ -13,9 +13,13 @@ class Sudoku
 
     	for i in 0..@starting_board.length-1 
 
+    		# changing every nil to zero for sorting purposes
     		if @starting_board[i][0] == nil
     			@starting_board[i][0] = 0
     		end
+
+    		# creating arrays for every row, column and square
+
     		column = @starting_board.map{|a| a[i]}
 
     		length = column.length
@@ -32,20 +36,22 @@ class Sudoku
 
 			end
 
+			#validating every column row and array if one of them is wrong returning false			
 			if !(validate?(column) && validate?(row) && validate?(square))
 				return false
 			end			
 
 		end
 
-		return true
+		return true 
     end
 
-    def validate?(check)
-    	i = 0
-    	check.sort!
-    	for i in check do
-    		if(check[i-1] != i) 
+    #sorting and checking if numbers are not repeating 
+    def validate?(array)
+    	i = 1
+    	array.sort!
+    	for i in array do
+    		if(array[i-1] != i) 
     			return false
     		end		
     	end
@@ -56,7 +62,7 @@ class Sudoku
     	if x<1 || x>@@size*@@size || y<1 || y> @@size*@@size
     		puts "enter valid data"
     	else
-    	@starting_board[x-1][y-1] = 2
+    	@starting_board[y-1][x-1] = number
     	end
     end
     
