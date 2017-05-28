@@ -1,13 +1,14 @@
 #!/usr/bin/ruby
 
 class Sudoku
- 
-	starting_board = Array.new
-	@size
 
     def initialize(starting_board, size = 3)
     	@starting_board = starting_board
-    	@size = size
+    	if Math.sqrt(@starting_board[0].length) != size
+    		raise "size not matching the array"
+    	else
+    		@size = size
+    	end
     end
     
     def solved?	
@@ -60,7 +61,7 @@ class Sudoku
     
     def set(x,y,number)
     	if x<1 || x>@size*@size || y<1 || y> @size*@size
-    		puts "enter valid data"
+    		raise "not valid x or y"
     	else
     	@starting_board[y-1][x-1] = number
     	end
