@@ -2,11 +2,17 @@
 
 class Sudoku
  
-	starting_board = Array.new(81)
+	starting_board = Array.new
 	@@size
 
     def initialize(starting_board)
     	@starting_board = starting_board
+    	@@size = 3
+    end
+
+    def initialize(starting_board, size)
+    	@starting_board = starting_board
+    	@@size = size
     end
     
     def solved?	
@@ -23,7 +29,7 @@ class Sudoku
     		column = @starting_board.map{|a| a[i]}
 
     		length = column.length
-    		@@size = Math.sqrt(column.length).to_i
+    		#@@size = Math.sqrt(column.length).to_i
 
     		row = Array.new(@@size)
     		

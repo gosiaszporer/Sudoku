@@ -31,7 +31,7 @@ starting_board = [
 #	[3,1,10,14,5,6,2,11,9,7,15,16,13,4,8,12]
 #]
 
-sudoku = Sudoku.new(starting_board)
+sudoku = Sudoku.new(starting_board, 3)
 
 puts sudoku.solved? #=> false
 
