@@ -5,12 +5,12 @@ class Sudoku
 	starting_board = Array.new
 	@@size
 
-    def initialize(starting_board)
-    	@starting_board = starting_board
-    	@@size = 3
-    end
+    #def initialize(starting_board)
+    #	@starting_board = starting_board
+    #	@@size = 3
+    #end
 
-    def initialize(starting_board, size)
+    def initialize(starting_board, size = 3)
     	@starting_board = starting_board
     	@@size = size
     end
